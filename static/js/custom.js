@@ -1,4 +1,5 @@
 // Put your custom JS code here
+console.log("CUSTOM JS LOADED");
 function loadMarkdown(file) {
   fetch(file)
     .then(response => {
@@ -25,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const lines = csvText.split("\n").slice(1);
 
       lines.forEach(line => {
+        line = line.replace(/\r$/, "");
         if (!line.trim()) return;
 
         const match = line.match(/^(\d+),"(.+)"$/);
@@ -63,4 +65,39 @@ document.addEventListener("DOMContentLoaded", () => {
         preview.innerHTML = "<p class='text-danger'>Le fichier markdown est introuvable.</p>";
       });
   });
+
+  const downloadBtn = document.getElementById("download-btn");
+
+  select.addEventListener("change", () => {
+    const file = select.value;
+
+    if (!file) {
+      downloadBtn.disabled = true;
+      return;
+    }
+
+    downloadBtn.disabled = false;
+  });
+
+  // Télécharger le fichier Markdown
+  downloadBtn.addEventListener("click", () => {
+    const file = select.value;
+    if (!file) return;
+
+    const fileName = file.split("/").pop();
+
+    fetch(file)
+      .then(response => response.blob())
+      .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = fileName;
+        a.click();
+        window.URL.revokeObjectURL(url);
+      });
+  });
+
 });
+
+

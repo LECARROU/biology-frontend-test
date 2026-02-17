@@ -1,5 +1,8 @@
 {{ define "main" }}
-<section class="section container-fluid mt-n3 pb-3">
+<div class="floating-chick-container text-center">
+  <img src="/images/chick-3d.png" alt="3D Chick Mascot" class="floating-chick">
+</div>
+<section class="section container-fluid mt-n5 pb-3">
   <div class="row justify-content-center">
     <div class="col-lg-12 text-center">
       <h1>{{ .Title }}</h1>
@@ -25,15 +28,15 @@
       <div class="row justify-content-center text-center">
         <div class="col-lg-5">
           <h2 class="h4">Sujets de synthèse proposés en 2016</h2>
-          <!-- <p>Edit <code>content/_index.md</code> to see this page change.</p> -->
+          <p>De la banque de sujets à la génération automatique : tout pour réviser la BCPST.</p>
         </div>
         <div class="col-lg-5">
           <h2 class="h4">Edition automatique d'un contenu structuré</h2>
-          <!-- <p>Add Markdown files to <code>content</code> to create new pages.</p> -->
+          <p>Un outil complet pour explorer, générer et télécharger des sujets BCPST structurés.</p>
         </div>
         <div class="col-lg-5">
           <h2 class="h4">Fichiers Markdown téléchargeables</h2>
-          <!-- <p>Edit your config in <code>config/_default/params.toml</code>.</p> -->
+          <p>Consulter, structurer et exporter vos sujets BCPST en un seul endroit.</p>
         </div>
         <div class="col-lg-5">
           <h2 class="h4">Documentation</h2>
@@ -42,6 +45,90 @@
       </div>
     </div>
   </section>
+  <section class="section section-md bg-light">
+  <div class="container">
+
+    <h2 class="h3 mb-4">Sélection d’un sujet</h2>
+
+    <!-- Menu déroulant -->
+    <!-- <select id="subject-select" class="form-select mb-4">
+      <option value="">— Choisissez un sujet —</option>
+    </select> -->
+    <div class="d-flex align-items-center gap-2 mb-4">
+      <select id="subject-select" class="form-select">
+        <option value="">— Choisissez un sujet —</option>
+      </select>
+
+      <button id="download-btn" class="btn btn-primary" disabled>
+        <span class="me-1">Télécharger</span>
+        <i class="bi bi-download"></i>
+      </button>
+    </div>
+    <!-- Zone de prévisualisation -->
+    <div id="markdown-preview" class="markdown-body p-4 border rounded mb-4">
+      <p>Sélectionnez un sujet pour afficher son contenu.</p>
+    </div>
+
+  </div>
+  <script>
+    document.documentElement.setAttribute("data-bs-theme", "dark");
+  </script>
+  <style>
+    .floating-chick-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .floating-chick {
+      width: 180px;
+      animation: float 3s ease-in-out infinite;
+      filter: drop-shadow(0 10px 15px rgba(0,0,0,0.25));
+    }
+
+    @keyframes float {
+      0%   { transform: translateY(0px); }
+      50%  { transform: translateY(-12px); }
+      100% { transform: translateY(0px); }
+    }
+  </style>
+  <style>
+    /* Mode sombre uniquement */
+    html[data-bs-theme="dark"] #markdown-preview {
+      background-color: var(--bs-dark) !important;
+      color: var(--bs-light) !important;
+    }
+    #markdown-preview h1 {
+      font-size: 1.6rem !important;
+    }
+    #markdown-preview h2 {
+      font-size: 1.4rem !important;
+    }
+    #markdown-preview h3 {
+      font-size: 1.2rem !important;
+    }
+    #markdown-preview h4 {
+      font-size: 1.1rem !important;
+    }
+    #markdown-preview p,
+    #markdown-preview li {
+      font-size: 1rem !important;
+    }
+
+    #download-btn {
+      min-width: 150px; /* élargit le bouton */
+      display: inline-flex; /* garantit l’alignement horizontal */
+      align-items: center;  /* centre verticalement texte + icône */
+      justify-content: center; /* centre horizontalement */
+      gap: 0.4rem; /* espace entre texte et icône */
+      white-space: nowrap; /* empêche le retour à la ligne */
+    }
+
+
+  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <script src="/js/marked.min.js"></script>
+  <script src="/js/custom.js"></script>
   {{ end }}
 {{ end }}
 

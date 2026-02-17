@@ -95,3 +95,9 @@
 [[mounts]]
   source = "static"
   target = "static"
+
+[params.assets]
+js = [
+  "js/app.js",
+  "js/custom.js",
+]
