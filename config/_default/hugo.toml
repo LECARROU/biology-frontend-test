@@ -1,5 +1,5 @@
 title = "BCPST"
-baseurl = "http://localhost/"
+baseurl = "https://lecarrou.github.io/biology-frontend-test/"
 disableAliases = true
 disableHugoGeneratorInject = true
 # disableKinds = ["taxonomy", "term"]
